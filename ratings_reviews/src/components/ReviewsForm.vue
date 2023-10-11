@@ -52,17 +52,15 @@ const handleSubmit = () => {
   if (!store.editedContent.editable) {
     store.addReview(newReview)
     text.value = ''
-    rating.value = ''
   } else {
     store.updateReview({
       ...newReview,
       id: store.editedContent.item.id
     })
     text.value = ''
-    rating.value = ''
   }
 }
-const setRating = (val) => {
+const setRating = (val: number): void => {
   rating.value = val
   console.log(val)
 }
