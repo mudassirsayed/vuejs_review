@@ -6,13 +6,18 @@
     <button class="edit">
       <i class="fas fa-edit"></i>
     </button>
-    <div className="num-display">8</div>
-    <div className="text-display">Nice NiceNiceNiceNiceNiceNiceNice</div>
+    <div className="num-display">{{ item.rating }}</div>
+    <div className="text-display">{{ item.text }}</div>
   </div>
 </template>
 
-<script>
-export default {}
+<script setup>
+import { defineProps } from 'vue'
+defineProps({
+  item: {
+    type: Object
+  }
+})
 </script>
 
 <style></style>

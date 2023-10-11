@@ -1,15 +1,15 @@
 <template>
   <p>No Reviews Yet</p>
   <div class="reviewList">
-    <review-item />
+    <review-item v-for="(item, i) in store.reviewContent" :key="i" :item="item" />
   </div>
 </template>
 
-<script>
+<script setup>
 import ReviewItem from './ReviewItem.vue'
-export default {
-  components: { ReviewItem }
-}
+import { useReviewStore } from '../stores/review'
+
+const store = useReviewStore()
 </script>
 
 <style></style>
