@@ -1,5 +1,6 @@
 <template>
-  <Card :reverse="true">
+  <Card>
+    <!-- <Card :reverse="true"> -->
     <form @submit.prevent="handleSubmit">
       <h2>How would you rate your service with us?</h2>
       <!-- Rating Component -->
