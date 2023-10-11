@@ -8,7 +8,7 @@
         <input type="text" placeholder="Write a review" v-model="text" />
         <button type="submit" class="btn btn-primary" :disabled="btnDisabled">Send</button>
       </div>
-      <div class="message" v-if="message != ''">The input field is required</div>
+      <div class="message" v-if="message != ''">{{ message }}</div>
     </form>
   </Card>
 </template>
@@ -34,6 +34,16 @@ watch(editedContent, (newVal) => {
   }
 })
 
+watch(text, (newValue) => {
+  if (newValue.trim().length <= 10) {
+    btnDisabled.value = true
+    message.value = 'The input field is required'
+  } else {
+    btnDisabled.value = false
+    message.value = ''
+  }
+})
+
 const handleSubmit = () => {
   const newReview = {
     text: text.value,
@@ -41,11 +51,15 @@ const handleSubmit = () => {
   }
   if (!store.editedContent.editable) {
     store.addReview(newReview)
+    text.value = ''
+    rating.value = ''
   } else {
     store.updateReview({
       ...newReview,
       id: store.editedContent.item.id
     })
+    text.value = ''
+    rating.value = ''
   }
 }
 const setRating = (val) => {

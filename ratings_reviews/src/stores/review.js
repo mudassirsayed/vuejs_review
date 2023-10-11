@@ -18,7 +18,6 @@ export const useReviewStore = defineStore('review', {
         body: JSON.stringify(review)
       })
       const newReview = await response.json()
-      console.log(newReview)
       this.reviews = [newReview, ...this.reviews]
     },
     async fetchReviews() {

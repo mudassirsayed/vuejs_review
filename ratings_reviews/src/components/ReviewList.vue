@@ -1,6 +1,6 @@
 <template>
-  <p>No Reviews Yet</p>
-  <div class="reviewList">
+  <p v-if="!store.reviewContent || store.reviewContent.length === 0">No Reviews Yet</p>
+  <div v-else class="reviewList">
     <review-item v-for="(item, i) in store.reviewContent" :key="i" :item="item" />
   </div>
 </template>
