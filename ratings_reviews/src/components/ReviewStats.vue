@@ -5,7 +5,7 @@
   </div>
 </template>
 
-<script setup>
+<script lang="ts" setup>
 import { useReviewStore } from '../stores/review'
 
 const store = useReviewStore()

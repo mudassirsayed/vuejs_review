@@ -11,15 +11,15 @@
   </div>
 </template>
 
-<script setup>
-import { defineProps } from 'vue'
+<script lang="ts" setup>
 import { useReviewStore } from '../stores/review'
+import { ReviewItem } from '../types'
+
 const store = useReviewStore()
-defineProps({
-  item: {
-    type: Object
-  }
-})
+
+defineProps<{
+  item: ReviewItem
+}>()
 </script>
 
 <style></style>

@@ -12,11 +12,7 @@
   </header>
 </template>
 
-<script>
-export default {
-  name: 'Header'
-}
-</script>
+<script lang="ts"></script>
 
 <style scoped>
 .nav-inner {
