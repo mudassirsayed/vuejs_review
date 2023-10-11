@@ -8,13 +8,8 @@
   </div>
 </template>
 
-<script>
+<script lang="ts" setup>
 import ReviewList from '../components/ReviewList.vue'
 import ReviewsForm from '../components/ReviewsForm.vue'
 import ReviewStats from '../components/ReviewStats.vue'
-
-export default {
-  name: 'Home',
-  components: { ReviewsForm, ReviewStats, ReviewList }
-}
 </script>

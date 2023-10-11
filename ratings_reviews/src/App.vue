@@ -5,7 +5,7 @@
   </div>
 </template>
 
-<script setup>
+<script lang="ts" setup>
 import { onMounted } from 'vue'
 import Header from './components/Header.vue'
 import { useReviewStore } from './stores/review'

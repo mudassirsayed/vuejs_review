@@ -13,7 +13,7 @@
   </Card>
 </template>
 
-<script setup>
+<script lang="ts" setup>
 import { ref, watch } from 'vue'
 import RatingSelect from './RatingSelect.vue'
 import Card from './shared/Card.vue'

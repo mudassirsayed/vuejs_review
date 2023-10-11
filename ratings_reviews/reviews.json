@@ -1,14 +1,19 @@
 {
   "reviews": [
     {
-      "text": "dedeedede",
-      "rating": 10,
+      "text": "swswswswwswsws",
+      "rating": 2,
       "id": 1
     },
     {
-      "text": "swwswswswswsswsw",
+      "text": "swswswswswswsws",
       "rating": 7,
       "id": 2
+    },
+    {
+      "text": "xsxsxsxxssxsx",
+      "rating": 3,
+      "id": 3
     }
   ]
 }
