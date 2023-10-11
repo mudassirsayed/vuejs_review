@@ -13,7 +13,7 @@
 
 <script lang="ts" setup>
 import { useReviewStore } from '../stores/review'
-import { ReviewItem } from '../types'
+import type { ReviewItem } from '../types'
 
 const store = useReviewStore()
 

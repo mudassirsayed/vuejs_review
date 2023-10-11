@@ -3,3 +3,5 @@ export type ReviewItem = {
   rating: number
   id: number
 }
+
+type NewReview = Omit<ReviewItem, 'id'>

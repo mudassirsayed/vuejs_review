@@ -1,15 +1,21 @@
 import { defineStore } from 'pinia'
+import type { ReviewItem, NewReview } from '../types'
+
+interface EditedItem {
+  editable: boolean
+  item: null | ReviewItem
+}
 
 export const useReviewStore = defineStore('review', {
   state: () => ({
-    reviews: [],
+    reviews: [] as ReviewItem[],
     editedData: {
       editable: false,
       item: null
-    }
+    } as EditedItem
   }),
   actions: {
-    async addReview(review) {
+    async addReview(review: NewReview) {
       const response = await fetch('http://localhost:3000/reviews', {
         method: 'POST',
         headers: {
@@ -29,14 +35,14 @@ export const useReviewStore = defineStore('review', {
         console.log(error)
       }
     },
-    editReview(review) {
+    editReview(review: ReviewItem) {
       let editedData = {
         editable: true,
         item: review
       }
       this.editedData = editedData
     },
-    async updateReview(review) {
+    async updateReview(review: ReviewItem) {
       const response = await fetch(`http://localhost:3000/reviews/${review.id}`, {
         method: 'PUT',
         headers: {
@@ -45,7 +51,7 @@ export const useReviewStore = defineStore('review', {
         body: JSON.stringify(review)
       })
       const newReview = await response.json()
-      let reviews = this.reviews.map((rev) =>
+      let reviews = this.reviews.map((rev: ReviewItem) =>
         rev.id === review.id ? { ...rev, ...newReview } : rev
       )
       this.reviews = reviews
@@ -56,7 +62,7 @@ export const useReviewStore = defineStore('review', {
       }
       this.editedData = editedData
     },
-    async deleteReview(review) {
+    async deleteReview(review: ReviewItem) {
       await fetch(`http://localhost:3000/reviews/${review.id}`, {
         method: 'DELETE'
       })
@@ -71,16 +77,16 @@ export const useReviewStore = defineStore('review', {
           return acc + curr.rating
         }, 0) / state.reviews.length
 
-      temp = temp.toFixed(1).replace(/[.,]0$/, '')
+      temp = Number(temp.toFixed(1).replace(/[.,]0$/, ''))
       return temp
     },
-    totalReview() {
+    totalReview(): number {
       return this.reviews.length
     },
-    reviewContent() {
+    reviewContent(): any {
       return this.reviews
     },
-    editedContent() {
+    editedContent(): any {
       return this.editedData
     }
   }
