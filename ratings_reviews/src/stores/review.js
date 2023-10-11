@@ -29,6 +29,40 @@ export const useReviewStore = defineStore('review', {
       } catch (error) {
         console.log(error)
       }
+    },
+    editReview(review) {
+      let editedData = {
+        editable: true,
+        item: review
+      }
+      this.editedData = editedData
+    },
+    async updateReview(review) {
+      const response = await fetch(`http://localhost:3000/reviews/${review.id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(review)
+      })
+      const newReview = await response.json()
+      let reviews = this.reviews.map((rev) =>
+        rev.id === review.id ? { ...rev, ...newReview } : rev
+      )
+      this.reviews = reviews
+      this.fetchReviews()
+      let editedData = {
+        editable: false,
+        item: null
+      }
+      this.editedData = editedData
+    },
+    async deleteReview(review) {
+      await fetch(`http://localhost:3000/reviews/${review.id}`, {
+        method: 'DELETE'
+      })
+      this.reviews = this.reviews.filter((item) => item.id !== review.id)
+      this.fetchReviews()
     }
   },
   getters: {
@@ -46,6 +80,9 @@ export const useReviewStore = defineStore('review', {
     },
     reviewContent() {
       return this.reviews
+    },
+    editedContent() {
+      return this.editedData
     }
   }
 })
